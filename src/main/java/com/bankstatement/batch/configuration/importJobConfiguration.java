@@ -51,10 +51,10 @@ public class importJobConfiguration {
   public Job job() throws Exception {
     return this.jobBuilderFactory
       .get("customerImportJob")
-//      .start(importCustomerUpdates())
-//      .start(importTransactions())
-//      .start(applyTransactions())
-      .start(generateStatements(null))
+      .start(importCustomerUpdates())
+      .next(importTransactions())
+      .next(applyTransactions())
+      .next(generateStatements(null))
       .incrementer(new RunIdIncrementer())
       .build();
   }
